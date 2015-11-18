@@ -1,0 +1,40 @@
+iRemember LogBook
+
+7/20/2015
+5pm-6:45pm
+
+Establishing workspace and looking at GUI asset options.
+
+7/22/2015
+11:10am-2:25pm
+
+How to make the font nice and big: Use the in-world editing tool linked to the key T 
+(square with blue verticies) to expand the text as much as possible. As you do this,
+make the text size larger. Then scale it down with the in-world editing tool linked to the key R. 
+
+Potential free image source:
+http://www.morguefile.com/archive#/?q=man&sort=pop&photo_lib=morgueFile
+
+I downloaded a directory of male and female images.
+
+7/29/2015
+1am-3:20am
+
+I was begining to put white hex's over the images but have instead decided to do it in runtime which seems more reasonable.
+Wow! I got amazing text using the UI Text. I need to stick with that option. I planned out all my scenes and I am now coding a 
+random image display script.
+
+I wasn't able to fix the image displays so I will work on the buttons instead.
+Button wiring: https://www.youtube.com/watch?v=kQ2Qc_0MIyI
+Image wiring: https://www.youtube.com/watch?v=-HdzarjjGUc
+
+Watch this when I have free time: https://www.youtube.com/watch?v=6eVfcEYxBPg
+
+10/30/2015
+7pm-8:45pm 
+Trying to put time back into this project. I have a random name generator. Next step is to make the image random and save the data correctly.
+Then I will work to save a memory, and then load it.
+
+11/17/2015
+Jumping back onto this project.
+Need to add scenes in build to App.loadLevel them!
