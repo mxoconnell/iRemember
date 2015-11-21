@@ -1,24 +1,26 @@
 ﻿//This script is used in the Main Menu to randomly generate pictures and display them on the screen
+//Credit: forum.unity3d.com/threads/resources-subfolder.36918
+
 using UnityEngine;
 using System.Collections;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;//for directoryInfo & FileInfo
 
 
 public class changePicture : MonoBehaviour {
 
-    //public Texture2D imgDisplay;//tetsing to find what the gameobject was
-    public UnityEngine.UI.RawImage imgD;
-    //public Sprite t;
-    public SpriteRenderer x;
-    // Use this for initialization
+     
+    public UnityEngine.UI.RawImage imgDisplay;
+
     void Start () {
-        imgD.texture =  Resources.Load<Texture>("pic");
-        Sprite newSprite = Resources.Load<Sprite>("pic");
-        Debug.Log("Result: " + Resources.Load<Sprite>("pic"));
-        Debug.Log("Result: " + Resources.Load<Texture>("pic.jpg"));
-        // t = newSprite;//Sprite.Create((Texture2D)myTextures[0], new Rect(0, 0, 170, 170),new Vector2(0, 0),100.0f);
-        //SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
-        //Sprite sprite = new Sprite();
-        x.sprite = newSprite;//Sprite.Create(www.texture, new Rect(0, 0, 170, 170),new Vector2(0, 0),100.0f);
+        //get random picture name
+        string imgName = getDisplayImageName();
+        //display the picture
+        Debug.Log("Looking for..." + imgName);
+        Debug.Log("Looking for..." + "Female Pictures/" +imgName );
+        imgDisplay.texture = Resources.Load<Texture>("Female Pictures/" + imgName);//"pic" works inside
+
 
 
     }
@@ -29,25 +31,52 @@ public class changePicture : MonoBehaviour {
 	}
 
     //returns an image to display of the memory
-    public Texture2D getDisplayImage()
+    public string getDisplayImageName()
     {
-       /* DirectoryInfo dir;//determine which directory to use
-        if (isMale)
+        string randomImageName ="";
+        DirectoryInfo dir;//determine which directory to use
+        //bool isMale = true;
+        ////50% Chance memory is female
+        //if (UnityEngine.Random.value >= 0.5)
+        //{
+        //    isMale = false;//switch gender to female
+        //}
+
+        //if (isMale)
+        //{
+        //    dir = new DirectoryInfo("Assets/Resources/Male Pictures");
+        //}
+        //else
+        //{
+            dir = new DirectoryInfo("Assets/Resources/Female Pictures");
+        //}
+
+        FileInfo[] pictures = dir.GetFiles("*.*");//create a random index based on size of directory
+        int randomIndex = UnityEngine.Random.Range(0, pictures.Length - 1);
+        Debug.Log("IMG Found:" + pictures[randomIndex]);
+       
+
+        randomImageName = pictures[randomIndex].ToString(); // this will look something like this: "Assets\Resources\Male Pictures\file8341308807137.jpg.meta"
+
+        //ocassionally file will have a .meta on the end of their file name. So instead of chopping the last 4 characters off, we look for an end delimeter of either ".jpg" or ".JPG"
+        string endDelimiter = "";
+        if(randomImageName.IndexOf(".jpg") != -1)
         {
-            dir = new DirectoryInfo("Assets/Resources/People Pictures/Male Pictures");
+            endDelimiter = ".jpg";
+        }
+        else if (randomImageName.IndexOf(".JPG") != -1)
+        {
+            endDelimiter = ".JPG";
         }
         else
         {
-            dir = new DirectoryInfo("Assets/Resources/People Pictures/Female Pictures");
+            throw new System.ArgumentException("Invalid image file name: [" + randomImageName + "] Does not include .jpg or .JPG");
         }
-        //var image = new Texture2D(2, 2);//2's will be replaced in next line
-        //image.LoadImage(dir.GetFiles().GetValue(indexOfImage));
 
-        //var images = dir.GetFiles();
-        //image.LoadImage (files [2]);
-        //		var myTexture = Resources.Load(images[2]);
-        var myTexture = (Texture2D)Resources.Load("Female Pictures/093.jpg");*/
-        return null;
+        int nameLength = (randomImageName.LastIndexOf(endDelimiter) - randomImageName.LastIndexOf("\\"));//distance from where name begins to ".jpg" or ".JPG"
+        randomImageName = randomImageName.Substring(randomImageName.LastIndexOf("\\")+1, nameLength-1);//we trim it to  "file8341308807137"
 
+        Debug.Log("Name:" + randomImageName);
+        return randomImageName;
     }
 }
