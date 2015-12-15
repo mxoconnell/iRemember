@@ -172,7 +172,8 @@ public class InsertCommand : MonoBehaviour {
 	{
 		// Call our SQL statement using ? to bind our variables
 		dbManager.Execute("INSERT INTO PlayerStats (PlayerName, TotalKills, Points) VALUES (?, ?, ?)", playerName, totalKills, points);
-	}
+
+    }
 	
 	/// <summary>
 	/// Saves the player stats three times, using a collection of PlayerStats and inserting all at once. This example uses

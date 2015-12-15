@@ -38,3 +38,6 @@ Then I will work to save a memory, and then load it.
 11/17/2015
 Jumping back onto this project.
 Need to add scenes in build to App.loadLevel them!
+
+12/14/2015
+Trying to learn databasing.
