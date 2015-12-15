@@ -15,35 +15,54 @@ public class displayMemories : MonoBehaviour {
 	
 	// reference to the gui text object in our scene that will be used for output
 	public GUIText outputText;
-	
-	void Start () 
+
+
+    public class Stuff
+    {
+        public string WeaponName;
+        public string Damage;
+
+        public Stuff()
+        {
+            WeaponName = "milk";
+            Damage = "cheese";
+        }
+
+        public Stuff(string bul, string gre)
+        {
+            WeaponName = bul;
+            Damage = gre; 
+        }
+    }
+
+    void Start ()  
 	{
-		// Gather a list of weapons and their type names pulled from the weapontype table		
-		List<Weapon> weapons = dbManager.Query<Weapon>(
+        // Gather a list of weapons and their type names pulled from the weapontype table		
+        List<global::Stuff> weapons = dbManager.Query<global::Stuff>(
 														"SELECT " + 
-															"W.WeaponID, " + 
 															"W.WeaponName, " + 
-															"W.Damage, " + 
-															"W.Cost, " + 
-															"W.Weight, " + 
-															"W.WeaponTypeID, " + 
-															"T.Description AS WeaponTypeDescription " + 
+															"W.Damage " + 
 														"FROM " + 
-															"Weapon W " + 
-															"JOIN WeaponType T " + 
-																"ON W.WeaponTypeID = T.WeaponTypeID " + 
-														"ORDER BY " + 
-															"W.WeaponID "
+															"Weapon W " 
 														);
 		
 		// output the list of weapons
 		outputText.text = "Memories...\n\n";
-		foreach (Weapon weapon in weapons)
+		foreach (global::Stuff weapon in weapons) 
 		{
-			outputText.text += "Name: '" + weapon.WeaponName + "' " + "\n"+
-								"Damage:" + weapon.Damage.ToString() + " " + "\n\n";
+            outputText.text += "Display Name:   " + weapon.WeaponName.ToString() +  "\n"+
+							   "Image Location: " + weapon.Damage.ToString() + "\n\n";
 		}
 
 
 	}
+
+   /* private void SavePlayerStats_Simple(string playerName, int totalKills, int points)
+    {
+        // Initialize our PlayerStats class
+        PlayerStats playerStats = new PlayerStats { PlayerName = playerName, TotalKills = totalKills, Points = points };
+
+        // Insert our PlayerStats into the database
+        dbManager.Insert(playerStats);
+    }*/
 }

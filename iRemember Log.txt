@@ -40,4 +40,5 @@ Jumping back onto this project.
 Need to add scenes in build to App.loadLevel them!
 
 12/14/2015
-Trying to learn databasing.
+Trying to learn databasing. I have down loaded the SimpleSQL unity plugin form the asset store.
+http://sqlitebrowser.org/ is working as a means to look into the database.

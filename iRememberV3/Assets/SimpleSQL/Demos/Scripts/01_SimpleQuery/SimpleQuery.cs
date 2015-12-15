@@ -19,7 +19,7 @@ public class SimpleQuery : MonoBehaviour {
 	void Start () 
 	{
 		// Gather a list of weapons and their type names pulled from the weapontype table		
-		List<Weapon> weapons = dbManager.Query<Weapon>(
+		List<Stuff> weapons = dbManager.Query<Stuff>(
 														"SELECT " + 
 															"W.WeaponID, " + 
 															"W.WeaponName, " + 
@@ -38,7 +38,7 @@ public class SimpleQuery : MonoBehaviour {
 		
 		// output the list of weapons
 		outputText.text = "Weapons\n\n";
-		foreach (Weapon weapon in weapons)
+		foreach (Stuff weapon in weapons)
 		{
 			outputText.text += "Name: '" + weapon.WeaponName + "' " + 
 								"Damage:" + weapon.Damage.ToString() + " " + 
@@ -51,7 +51,7 @@ public class SimpleQuery : MonoBehaviour {
         // get the first weapon record that has a WeaponID > 4
 		outputText.text += "\nFirst weapon record where the WeaponID > 4: ";
         bool recordExists;
-        Weapon firstWeapon = dbManager.QueryFirstRecord<Weapon>(out recordExists, "SELECT WeaponName FROM Weapon WHERE WeaponID > 4");
+        Stuff firstWeapon = dbManager.QueryFirstRecord<Stuff>(out recordExists, "SELECT WeaponName FROM Weapon WHERE WeaponID > 4");
         if (recordExists)
             outputText.text += firstWeapon.WeaponName + "\n";
         else
