@@ -38,17 +38,17 @@ public class displayMemories : MonoBehaviour {
     void Start ()  
 	{
         // Gather a list of weapons and their type names pulled from the weapontype table		
-        List<global::Stuff> weapons = dbManager.Query<global::Stuff>(
+        List<Stuff> weapons = dbManager.Query<Stuff>(
 														"SELECT " + 
-															"W.WeaponName, " + 
-															"W.Damage " + 
+															"W.displayText, " + 
+															"W.imageLocation " + 
 														"FROM " + 
-															"Weapon W " 
+															"memoryBank W " 
 														);
 		
 		// output the list of weapons
 		outputText.text = "Memories...\n\n";
-		foreach (global::Stuff weapon in weapons) 
+		foreach (Stuff weapon in weapons) 
 		{
             outputText.text += "Display Name:   " + weapon.WeaponName.ToString() +  "\n"+
 							   "Image Location: " + weapon.Damage.ToString() + "\n\n";
